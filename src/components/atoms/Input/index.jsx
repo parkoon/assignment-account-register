@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const InputWrapper = styled.div`
     position: relative;
@@ -15,7 +16,6 @@ const StyledInput = styled.input`
     padding: 7px;
     font-size: 17px;
 
-    /* Q. Placehoder 처리 최선? */
     &::placeholder {
         opacity: 0;
     }
@@ -61,13 +61,29 @@ const Clear = styled.button`
     }
 `
 
-function Input() {
+function Input({ onChange }) {
+    const [value, setValue] = useState('')
+
+    const handleChange = ({ target }) => {
+        const { value } = target
+        if (value.length > 12) return
+        console.log('api')
+        setValue(value)
+    }
+    const handleReset = () => {
+        setValue('')
+    }
+
     return (
         <InputWrapper>
-            <StyledInput placeholder="zz" />
+            <StyledInput
+                type="number"
+                placeholder="placeholder"
+                value={value}
+                onChange={handleChange}
+            />
             <Placeholder>계좌입력</Placeholder>
-
-            <Clear>X</Clear>
+            {value.length >= 2 && <Clear onClick={handleReset}>X</Clear>}
         </InputWrapper>
     )
 }
