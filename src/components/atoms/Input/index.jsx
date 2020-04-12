@@ -67,8 +67,8 @@ function Input({ onChange }) {
     const handleChange = ({ target }) => {
         const { value } = target
         if (value.length > 12) return
-        console.log('api')
         setValue(value)
+        onChange(value)
     }
     const handleReset = () => {
         setValue('')
