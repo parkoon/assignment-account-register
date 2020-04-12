@@ -1,6 +1,6 @@
 import React, { createContext } from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 export const AccountContext = createContext({})
 
@@ -11,7 +11,7 @@ function AccountContextProvider({ children }) {
     const [banks, setBanks] = useState([])
 
     useEffect(() => {
-        if (account > 12) {
+        if (account.length > 12) {
             alert('api 호출')
         }
     }, [account])

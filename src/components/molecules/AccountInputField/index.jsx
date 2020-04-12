@@ -15,7 +15,6 @@ function AccountInputField() {
     const handleChange = (value) => {
         setAccount(value)
     }
-
     return (
         <StyledAccountInputField>
             <Heading level={2}>등록 할 계좌를 입력해 주세요</Heading>
