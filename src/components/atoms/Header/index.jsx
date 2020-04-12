@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useHistory, useLocation } from 'react-router-dom'
+import { useCallback } from 'react'
 
 const HeaderWrapper = styled.header`
     color: #fff;
@@ -7,25 +9,48 @@ const HeaderWrapper = styled.header`
 `
 
 const HeaderContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
     padding: 18px 24px;
 `
 
-const HeaderNav = styled.div``
+const HeaderNav = styled.div`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 
-const HeaderActions = styled.div``
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: 0.3s;
+    font-size: 24px;
 
-const HeaderTitle = styled.div``
+    &:hover {
+        background: rgba(0, 0, 0, 0.2);
+    }
+`
 
-function Header({ title, actions }) {
+const HeaderTitle = styled.div`
+    text-align: center;
+`
+
+//
+function Header({ title, backLink, actions }) {
+    const history = useHistory()
+    const { pathname } = useLocation()
+
+    const isRootDir = () => pathname === '/'
+    const handleNav = () => history.goBack()
+
     return (
         <HeaderWrapper>
             <HeaderContainer>
-                <HeaderNav>뒤로가기</HeaderNav>
+                {!isRootDir() && <HeaderNav onClick={handleNav}>&larr;</HeaderNav>}
                 <HeaderTitle>{title}</HeaderTitle>
-                <HeaderActions></HeaderActions>
             </HeaderContainer>
         </HeaderWrapper>
     )

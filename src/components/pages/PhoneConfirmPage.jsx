@@ -15,7 +15,7 @@ const StyledButtonWrapper = styled.div`
 function PhoneConfirmPage() {
     return (
         <StyledPhoneConfirmPage>
-            <Header title="전화인증" />
+            <Header title="전화인증" backLink="/" />
             <DigitField />
             <GuideMessage>
                 Minim commodo ea elit fugiat voluptate exercitation elit do commodo commodo dolore.

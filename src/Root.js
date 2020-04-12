@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from './components/atoms/Header'
-import Heading from './components/atoms/Heading'
-import Input from './components/atoms/Input'
-import BankCard from './components/atoms/BankCard'
+
+import { Switch, Route } from 'react-router-dom'
 import AccountFormPage from './components/pages/AccountFormPage'
 import PhoneConfirmPage from './components/pages/PhoneConfirmPage'
 
@@ -18,8 +16,14 @@ const RootWrapper = styled.div`
 function Root() {
     return (
         <RootWrapper>
-            {/* <AccountFormPage /> */}
-            <PhoneConfirmPage />
+            <Switch>
+                <Route path="/" exact>
+                    <AccountFormPage />
+                </Route>
+                <Route path="/confirm">
+                    <PhoneConfirmPage />
+                </Route>
+            </Switch>
         </RootWrapper>
     )
 }
