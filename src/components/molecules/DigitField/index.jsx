@@ -12,13 +12,13 @@ const StyledDigitField = styled.div`
     margin-bottom: 72px;
 `
 
-function DigitField({ number }) {
+function DigitField({ digits }) {
+    const splitedDigits = String(digits).split('') || []
     return (
         <StyledDigitField>
-            <Digit>1</Digit>
-            <Digit>2</Digit>
-            <Digit>3</Digit>
-            <Digit>4</Digit>
+            {splitedDigits.map((d, index) => (
+                <Digit key={index}>{d}</Digit>
+            ))}
         </StyledDigitField>
     )
 }

@@ -28,11 +28,11 @@ const BankImage = styled.img`
     border-radius: 50%;
 `
 
-function BankCard() {
+function BankCard({ img, title, onClick }) {
     return (
-        <BankCardWrapper>
-            <BankImage src="https://i.picsum.photos/id/817/200/300.jpg" />
-            <Heading level={4}>Hello</Heading>
+        <BankCardWrapper onClick={onClick}>
+            <BankImage src={img} />
+            <Heading level={4}>{title}</Heading>
         </BankCardWrapper>
     )
 }

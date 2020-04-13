@@ -1,21 +1,36 @@
 import React, { createContext } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useRef } from 'react'
 
 export const AccountContext = createContext({})
 
-const { Provider, Consumer } = AccountContext
-
+const { Provider } = AccountContext
 function AccountContextProvider({ children }) {
     const [account, setAccount] = useState('')
     const [banks, setBanks] = useState([])
+    const timer = useRef(null)
 
     useEffect(() => {
-        if (account.length > 12) {
-            alert('api 호출')
-        }
+        clearTimeout(timer.current)
+        timer.current = setTimeout(async () => {
+            setBanks(await fetchBanks(account))
+        }, 700)
     }, [account])
-    return <Provider value={{ account, setAccount }}>{children}</Provider>
+
+    const fetchBanks = async (account) => {
+        if (!account) return
+        try {
+            const { data } = await axios.get(
+                `https://fe-account-api.herokuapp.com/api/v1/account?no=${account}`
+            )
+            const { banks } = data
+            return banks
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    return <Provider value={{ account, setAccount, banks }}>{children}</Provider>
 }
 
 export default AccountContextProvider
