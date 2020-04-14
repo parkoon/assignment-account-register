@@ -15,7 +15,10 @@ const ButtonWrapper = styled.button`
     ${(props) =>
         props.loading &&
         css`
-            background: rgba(0, 0, 0, 0.3);
+            background: grey;
+            &:hover {
+                background: grey;
+            }
         `}
 
     ${(props) =>
@@ -27,6 +30,8 @@ const ButtonWrapper = styled.button`
 
 function Button({ children, ...props }) {
     const { loading } = props
+
+    console.log('loading in button', loading)
     return (
         <ButtonWrapper {...props} disabled={loading}>
             {loading ? '잠시만 기다려주세요...' : children}
