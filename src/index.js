@@ -6,15 +6,18 @@ import Root from './Root'
 import './index.css'
 import AccountContextProvider from './context/AccountContext'
 import PhoneContextProvider from './context/PhoneContext'
+import LoadingContextProvider from './context/LoadingContext'
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <PhoneContextProvider>
-                <AccountContextProvider>
-                    <Root />
-                </AccountContextProvider>
-            </PhoneContextProvider>
+            <LoadingContextProvider>
+                <PhoneContextProvider>
+                    <AccountContextProvider>
+                        <Root />
+                    </AccountContextProvider>
+                </PhoneContextProvider>
+            </LoadingContextProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById('root')
