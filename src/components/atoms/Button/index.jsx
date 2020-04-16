@@ -4,12 +4,13 @@ import styled, { css } from 'styled-components'
 
 const ButtonWrapper = styled.button`
     padding: 12px;
-    background: red;
-    color: #fff;
+    border: 1px solid orange;
+    color: orange;
+    min-width: 70px;
     cursor: pointer;
 
     &:hover {
-        background: blue;
+        background: rgba(0, 0, 0, 0.1);
     }
 
     ${(props) =>

@@ -5,6 +5,8 @@ import AccountInputField from '../molecules/AccountInputField'
 import BankField from '../molecules/BankField'
 import { useContext } from 'react'
 import { AccountContext } from '../../context/AccountContext'
+import useModal from '../../hooks/useModal'
+import Modal from '../atoms/Modal'
 
 const StyledAccountFormPage = styled.div``
 
